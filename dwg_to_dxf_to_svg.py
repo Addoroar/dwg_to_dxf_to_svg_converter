@@ -66,8 +66,13 @@ def convert_dxf_to_svg(input_folder, output_folder):
     return 0    
 
 # Define input and output directories
-input_folder = r"./dwg"
-output_folder = r"./dxf"
+script_dir = os.path.dirname(__file__)
+input_folder = os.path.join(script_dir, "dwg")
+output_folder = os.path.join(script_dir, "dxf")
+
+# Create output folder if it doesn't exist
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
 
 #ODA Parameters
 input_file_type = "ACAD2018"
@@ -78,7 +83,11 @@ audit_flag = 1
 convert_dwg_to_dxf(input_folder, output_folder, input_file_type, output_file_type, recursive_flag, audit_flag)
 
 # Define input and output directories
-input_folder = "./dxf"
-output_folder = "./svg"
+input_folder = os.path.join(script_dir, "dxf")
+output_folder = os.path.join(script_dir, "svg")
+
+# Create output folder if it doesn't exist
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
 
 convert_dxf_to_svg(input_folder, output_folder)
